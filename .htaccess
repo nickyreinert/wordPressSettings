@@ -1,0 +1,17 @@
+# default WordPress and server settings here
+# [...]
+
+# enable deflate to compress files
+<IfModule mod_deflate.c>
+    <FilesMatch ".*\.(html|php|css|js|xml)$">
+        SetOutputFilter DEFLATE
+    </FilesMatch>
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/xml application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+</IfModule>
+
+# Disallow access to some important files
+<FilesMatch "(^\.|wp-config\.php|xmlrpc\.php|(?<!robots)\.txt|(liesmich|readme)\.*)">
+   Require all denied
+</FilesMatch>
