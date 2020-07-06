@@ -25,7 +25,8 @@ add_filter( 'emoji_svg_url', '__return_false' );
 add_action( 'init', 'disable_wp_emojicons' );
 
 // load scripts in footer (ref. https://www.kevinleary.net/move-javascript-bottom-wordpress/)
-add_action('after_setup_theme', 'footer_enqueue_scripts');
+// this may lead to flickering (raw site content loads, then styles are applied), so
+// disable entire hook if required, or edit the callback function add_action('after_setup_theme', 'footer_enqueue_scripts');
 
 // strip version info from static files to make them cacheable again (ref. https://wordpress.stackexchange.com/questions/195235/move-wordpress-native-javascript-to-bottom-of-page)
 add_filter( 'script_loader_src', 'remove_version_parameter', 15, 1 );
